@@ -1,0 +1,40 @@
+<%- include("partials/header") -%>
+<div class="container">
+  <h1>Vehicle Management</h1>
+  <h2><%- locals.user.name %></h2>
+  <img
+    src="<%- locals.user.avatar %>"
+    alt=""
+    width="100"
+    style="border-radius: 50%"
+  />
+  <button class="red" id="logout">Logout</button>
+  <table id="vehicleTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% vehicles.forEach((vehicle)=>{ %>
+      <tr>
+        <td><%- vehicle._id %></td>
+        <td><%- vehicle.brand %></td>
+        <td><%- vehicle.model %></td>
+        <td><%- vehicle.year %></td>
+        <td><%- vehicle.type %></td>
+        <td>
+          <button class="red deleteBtn" data-id="<%- vehicle._id %>">
+            Delete
+          </button>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
