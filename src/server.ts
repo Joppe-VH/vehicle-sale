@@ -11,6 +11,7 @@ import { NODE_ENV, PORT } from "./config/env";
 import cookieParser from "cookie-parser";
 import { Vehicle } from "./models/vehicleModel";
 import localAuthMiddleware from "./middleware/localAuthMiddleware";
+import arcjetMiddleware from "./middleware/arcjetMiddleware";
 
 // Variables
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", "src/views");
 app.use(express.static("src/public"));
+app.use(arcjetMiddleware);
 
 app.get("/", localAuthMiddleware, async (req, res) => {
   const vehicles = await Vehicle.find();
